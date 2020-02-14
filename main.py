@@ -5,5 +5,5 @@ print(matplotlib.__version__)
 print(pd.__version__)
 print (numpy.__version__)
 
-from problem_sets.ps1.ps1c import *
+from lecture_problems.lec2 import *
 

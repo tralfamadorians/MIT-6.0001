@@ -13,34 +13,24 @@ down_payment = 0.25 * total_cost
 months = 36
 current_savings = 0
 
-annual_salary = float(input('Please enter your annual salary.\n'))
+base_annual_salary = float(input('Please enter your annual salary.\n'))
 
-maximum = 10000             #100% of salary
-epsilon = 100               #acceptable margin of error
-numGuesses = 0
-low = 0                     #0% of salary
+maximum = 10000                   #100% of salary
+epsilon = 100                     #acceptable margin of error
+guesses = 0
+low = 0                           #0% of salary
 high = max(1, maximum)
-portion_saved = (high + low) / 2
+portion_saved = (high + low) / 2  #initial guess
 
 while abs(current_savings - down_payment) >= epsilon:
   print ('low = ', low, 'high = ', high, 'portion_saved = ', portion_saved)
-  numGuesses = numGuesses + 1
-
-#start reviewing here
-  current_savings = 0.0
-  annual_salary = base_annual_salary
-  monthly_salary = annual_salary / 12
-  monthly_deposit = monthly_salary * (portion_saved / 10000)
-    
+  guesses = guesses + 1
+  current_savings = 0.0                     #restart with updated guess
+  annual_salary = base_annual_salary        #restart with updated guess
   for month in range(1, months + 1):
-    current_savings *= 1 + monthly_rate_of_return
-    current_savings += monthly_deposit
+    current_savings = current_savings + current_savings*r/12 + (annual_salary / 12 * portion_saved / 10000)
     if month % 6 == 0:
-      annual_salary *= 1 + semi_annual_raise
-      monthly_salary = annual_salary / 12
-      monthly_deposit = monthly_salary * (portion_saved / 10000)
-#stop reviewing here
-
+      annual_salary = annual_salary*(1 + semi_annual_raise)
   prev_portion_saved = portion_saved
   if current_savings > down_payment:
     high = portion_saved
@@ -50,10 +40,11 @@ while abs(current_savings - down_payment) >= epsilon:
   if prev_portion_saved == portion_saved:
     break
 
-if prev_portion_saved == portion_saved and portion_saved == initial_high:
-  print('It is not possible to pay the down payment in three years.')
+if prev_portion_saved == portion_saved and portion_saved == maximum:
+  print('It is not possible to save the down payment in three years.')
 else:
-  print('Steps = ', numGuesses)
+  print('Steps = ', guesses)
+  portion_saved = portion_saved / 10000
   print('Best savings rate: ', portion_saved)
 
 

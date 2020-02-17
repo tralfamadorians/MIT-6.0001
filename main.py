@@ -1,9 +1,5 @@
-import pandas as pd
-import numpy
-import matplotlib
-print(matplotlib.__version__)
-print(pd.__version__)
-print (numpy.__version__)
+import pandas as pd, numpy, matplotlib
 
-from lecture_problems.lec2 import *
+
+from lecture_problems.lec2_branch_loops import *
 

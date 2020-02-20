@@ -1,5 +1,4 @@
 import pandas as pd, numpy, matplotlib
 
-
-from lecture_problems.lec2_branch_loops import *
+from finger_exercises.finger_exercises3 import *
 

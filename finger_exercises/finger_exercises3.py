@@ -1,13 +1,19 @@
-import pandas as pd
-import numpy
-import matplotlib
-print(matplotlib.__version__)
-print(pd.__version__)
-print (numpy.__version__)
+import pandas as pd, numpy, matplotlib
 
-#Let s be a string that contains a sequence of decimal numbers separated by commas, e.g., s = '1.23,2.4,3.123.' Write a program that prints the sume of the numbers in s.
+#write a program that asks the user to enter an integer and prints two integers, root and pwr, such that 0 < pwr < 6 and root**pwr is equal to the integer entered by the user. If no such pair of integers exists, it should print a message to that effect.
 
-s = '1.1, 2.2, 3.3, 4.4'
-print (s.split(',')) 
-total = sum(map(float, s.split(',')))
-print(total)
+entered = int(input('Enter an integer: '))
+root = 0
+pwr = 0
+for i in range(1,6):
+  if root**pwr == entered:
+    break
+  pwr = i
+  for r in range(1,entered):
+    if root**pwr == entered:
+      print('Root is:', str(root) + '.', 'Power is:', str(pwr) + '.')
+      break
+    else:
+      root = r
+if root**pwr != entered:
+  print('No such pair of integers exist.')

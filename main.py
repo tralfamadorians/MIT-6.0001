@@ -1,4 +1,5 @@
 import pandas as pd, numpy, matplotlib
 
-from finger_exercises.finger_exercises3d import *
+from lecture_problems.lec3_strings_algos import *
+
 
